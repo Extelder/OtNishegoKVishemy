@@ -14,7 +14,7 @@ public class SwerveMovement : MonoBehaviour
     private SwerveInputSystem _swerveInputSystem;
     private Rigidbody _rigidbody;
 
-    public float _swerveAmount;
+    private float _swerveAmount;
 
     private void Awake()
     {
