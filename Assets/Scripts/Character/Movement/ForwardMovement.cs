@@ -16,6 +16,6 @@ public class ForwardMovement : MonoBehaviour
 
     private void Update()
     {
-        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _rigidbody.velocity.y, _speed * Time.deltaTime);
+        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _rigidbody.velocity.y, _speed);
     }
 }
