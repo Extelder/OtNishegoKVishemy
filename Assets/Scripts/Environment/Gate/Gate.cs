@@ -27,5 +27,9 @@ public class Gate : MonoBehaviour
         {
             _animator.SetTrigger(_animatorInteractTriggerName);
         }
+        else
+        {
+            GameState.Instance.Win();
+        }
     }
 }

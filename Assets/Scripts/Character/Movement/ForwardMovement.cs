@@ -9,9 +9,26 @@ public class ForwardMovement : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
+    private void OnEnable()
+    {
+        GameState.Instance.Losed += DisableMovement;
+        GameState.Instance.Winned += DisableMovement;
+    }
+
+    private void OnDisable()
+    {
+        GameState.Instance.Losed -= DisableMovement;
+        GameState.Instance.Winned -= DisableMovement;
+    }
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void DisableMovement()
+    {
+        enabled = false;
     }
 
     private void Update()

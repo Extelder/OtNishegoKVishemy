@@ -16,6 +16,23 @@ public class SwerveMovement : MonoBehaviour
 
     private float _swerveAmount;
 
+    private void OnEnable()
+    {
+        GameState.Instance.Losed += DisableMovement;
+        GameState.Instance.Winned += DisableMovement;
+    }
+
+    private void OnDisable()
+    {
+        GameState.Instance.Losed -= DisableMovement;
+        GameState.Instance.Winned -= DisableMovement;
+    }
+
+    private void DisableMovement()
+    {
+        enabled = false;
+    }
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();

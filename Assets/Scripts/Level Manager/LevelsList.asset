@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: LevelsList
   m_EditorClassIdentifier: 
   randomizedLvls: 0
-  lvls:
-  - {fileID: 0}
+  lvls: []

@@ -7,6 +7,7 @@ public class CharacterWealthOutfit : MonoBehaviour
 {
     [SerializeField] private Outfit[] _outfits;
     [SerializeField] private CharacterWealth _wealth;
+    [SerializeField] private CharacterAnimator _characterAnimator;
 
     private Outfit _currentOutfit;
 
@@ -28,12 +29,13 @@ public class CharacterWealthOutfit : MonoBehaviour
         {
             if (value >= _outfits[i].WealthThreshold)
             {
-                if(_currentOutfit == _outfits[i])
+                if (_currentOutfit == _outfits[i])
                     return;
                 _currentOutfit?.Skin.SetActive(false);
                 _currentOutfit = _outfits[i];
                 _currentOutfit.Skin.SetActive(true);
 
+                _characterAnimator.SetWalkAnimationTrigger(_currentOutfit.WalkAnimationTriggerName);
                 OutfitChanged?.Invoke(_currentOutfit);
                 return;
             }
@@ -45,6 +47,7 @@ public class CharacterWealthOutfit : MonoBehaviour
 public class Outfit
 {
     [field: SerializeField] public string Name { get; private set; }
+    [field: SerializeField] public string WalkAnimationTriggerName { get; private set; }
     [field: SerializeField] public int WealthThreshold { get; private set; }
     [field: SerializeField] public GameObject Skin { get; private set; }
     [field: SerializeField] public Color NameColor { get; private set; }
