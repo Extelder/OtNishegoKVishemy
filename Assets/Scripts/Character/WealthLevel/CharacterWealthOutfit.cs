@@ -25,17 +25,28 @@ public class CharacterWealthOutfit : MonoBehaviour
 
     private void OnCurrentValueChanged(int value)
     {
+        if (!GameState.Instance.GameStarted)
+            return;
+
         for (int i = _outfits.Length - 1; i >= 0; i--)
         {
             if (value >= _outfits[i].WealthThreshold)
             {
                 if (_currentOutfit == _outfits[i])
                     return;
-                _currentOutfit?.Skin.SetActive(false);
+                if (_currentOutfit != null)
+                {
+                    _currentOutfit.Skin.SetActive(false);
+
+                    _characterAnimator.ResetWalkAnimationTrigger(_currentOutfit.WalkAnimationTriggerName);
+                }
+
                 _currentOutfit = _outfits[i];
                 _currentOutfit.Skin.SetActive(true);
 
                 _characterAnimator.SetWalkAnimationTrigger(_currentOutfit.WalkAnimationTriggerName);
+                Debug.Log(_currentOutfit.WalkAnimationTriggerName);
+
                 OutfitChanged?.Invoke(_currentOutfit);
                 return;
             }

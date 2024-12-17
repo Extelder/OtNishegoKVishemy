@@ -31,7 +31,6 @@ public class CharacterWealth : MonoBehaviour
     private void Start()
     {
         CurrentValue = _startValue;
-        Debug.Log(CurrentValue);
         CurrentValueChanged?.Invoke(CurrentValue);
     }
 
